@@ -6,6 +6,7 @@ using System.Text;
 
 namespace ShoppingCart.Domain.Models
 {
+    //once something is updated here ctrl+shift+b
     public class Product
     {
         [Key]
@@ -20,5 +21,6 @@ namespace ShoppingCart.Domain.Models
         [Required]
 
         public Category Category { get; set; }
+        public string ImageUrl { get; set; }
     }
 }
