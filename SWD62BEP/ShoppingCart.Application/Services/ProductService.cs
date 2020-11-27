@@ -15,6 +15,26 @@ namespace ShoppingCart.Application.Services
         {
             _productsRepo = productRepository;
         }
+
+        public ProductViewModel GetProduct(Guid id)
+        {
+            //automapper
+
+            var myProduct = _productsRepo.GetProduct(id);
+            ProductViewModel myModel = new ProductViewModel();
+            myModel.Description = myProduct.Description;
+            myModel.ImageUrl = myProduct.ImageUrl;
+            myModel.Name = myProduct.Name;
+            myModel.Price = myProduct.Price;
+            myModel.Id = myProduct.Id;
+            myModel.Category = new CategoryViewModel()
+            {
+                Id = myProduct.Category.Id,
+                Name = myProduct.Category.Name
+            };
+            return myModel;
+        }
+
         public IQueryable<ProductViewModel> GetProducts()
         {
             //to be implemented using AutoMapper
