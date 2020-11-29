@@ -8,6 +8,7 @@ namespace ShoppingCart.Application.ViewModels
     public class ProductViewModel
     {
         public Guid Id { get; set; }
+        [Required(ErrorMessage ="Please input a name")]
         public String Name { get; set; }
         public double Price { get; set; }
         public String Description { get; set; }
