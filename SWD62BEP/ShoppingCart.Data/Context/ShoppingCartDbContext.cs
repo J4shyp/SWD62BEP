@@ -11,8 +11,9 @@ namespace ShoppingCart.Data.Context
         public ShoppingCartDbContext(DbContextOptions options) : base(options)
         {}
 
-        public DbSet<Product> Products { get; set; }
+        public DbSet<Product> Products { get; set; } //converted into tables
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Member>Members { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -25,8 +25,6 @@ namespace ShoppingCart.Application.Services
                            Name = c.Name
                        };
             return list;
-
-
         }
     }
 }

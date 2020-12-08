@@ -10,7 +10,7 @@ namespace ShoppingCart.Data.Repositories
 {
     public class ProductsRepository : IProductRepository
     {
-        ShoppingCartDbContext _context;
+        readonly ShoppingCartDbContext _context;
         public ProductsRepository(ShoppingCartDbContext context)
         {
             _context = context;
@@ -27,6 +27,13 @@ namespace ShoppingCart.Data.Repositories
         {
             _context.Products.Remove(p);
             _context.SaveChanges(); //this will save permanently into the database
+        }
+
+        public void DisableProduct(Guid id)
+        {
+            var p = GetProduct(id);
+            p.Disable = true;
+            _context.SaveChanges();
         }
 
         public Product GetProduct(Guid id)

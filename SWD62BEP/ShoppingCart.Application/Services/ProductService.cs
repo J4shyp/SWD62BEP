@@ -11,7 +11,7 @@ namespace ShoppingCart.Application.Services
 {
     public class ProductService : IProductsService
     {
-        private IProductRepository _productsRepo;
+        private readonly IProductRepository _productsRepo;
         public ProductService(IProductRepository productRepository)
         {
             _productsRepo = productRepository;
@@ -33,6 +33,16 @@ namespace ShoppingCart.Application.Services
 
 
             _productsRepo.AddProduct(newProduct);
+        }
+
+        public void DeleteProduct(Guid id)
+        {
+            var pToDelete = _productsRepo.GetProduct(id);
+            if(pToDelete != null)
+            {
+                _productsRepo.DeleteProduct(pToDelete);
+            }
+            
         }
 
         public ProductViewModel GetProduct(Guid id)
