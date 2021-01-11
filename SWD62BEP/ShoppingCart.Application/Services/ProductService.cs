@@ -14,8 +14,8 @@ namespace ShoppingCart.Application.Services
 {
     public class ProductsService : IProductsService
     {
-        private IMapper _mapper;
-        private IProductRepository _productsRepo;
+        private readonly IMapper _mapper;
+        private readonly IProductRepository _productsRepo;
         public ProductsService(IProductRepository productsRepository
            ,  IMapper mapper
             )
@@ -80,10 +80,9 @@ namespace ShoppingCart.Application.Services
             //demonstrate the alternative way with ProjectTo...
 
 
-            var products = _productsRepo.GetProducts();
-           var result = _mapper.Map<IQueryable<Product>,
-                IQueryable<ProductViewModel>>(products);
-            return result;
+            var products = _productsRepo.GetProducts().ProjectTo<ProductViewModel>(_mapper.ConfigurationProvider);
+            //var result = _mapper.Map<IQueryable<Product>, IQueryable<ProductViewModel>>(products);
+            return products;
 
             //Domain >> ViewModels
 
